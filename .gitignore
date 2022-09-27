@@ -2,5 +2,4 @@ config.yml
 node_modules/
 report.html
 theme-ready.tmp
-theme/
-theme/assets/*.bundle.*
+theme/config/settings_data.json
