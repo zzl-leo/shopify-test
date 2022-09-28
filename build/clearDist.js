@@ -1,17 +1,15 @@
 /*
  * @Date: 2022-09-28 14:59:36
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-28 15:21:23
+ * @LastEditTime: 2022-09-28 17:26:48
  * @FilePath: \shopify-starter-theme-master\build\clearDist.js
+ * @description: 清空theme文件夹使用
  */
 const fs = require('fs')
 const path = require('path');
 
 function emptyDir(path) {
-    console.log(path)
-
     const files = fs.readdirSync(path);
-    console.log(files)
     files.forEach(file => {
         const filePath = `${path}/${file}`;
         const stats = fs.statSync(filePath);
@@ -23,7 +21,6 @@ function emptyDir(path) {
         }
     })
 }
-
 
 function rmEmptyDir(path, level = 0) {
     const files = fs.readdirSync(path);
@@ -45,6 +42,5 @@ function clearDir(path) {
     emptyDir(path)
     rmEmptyDir(path)
 }
-
 
 clearDir(path.resolve(__dirname, '../theme'))

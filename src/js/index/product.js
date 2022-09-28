@@ -5,9 +5,9 @@ import { ProductForm } from '@shopify/theme-product-form';
 import { formatMoney } from '@shopify/theme-currency';
 import { addItem } from '@shopify/theme-cart';
 
-import '../css/product.css';
-import './utility/public-path'; // Needed for openCart
-import openCart from './utility/open-cart';
+import '../../css/product.css';
+import '../utility/public-path'; // Needed for openCart
+import openCart from '../utility/open-cart';
 
 const addToCartBtn = document.querySelector('[data-add-to-cart]');
 const featuredImage = document.querySelector('[data-featured-image]');

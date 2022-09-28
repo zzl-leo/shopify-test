@@ -1,13 +1,13 @@
 <!--
  * @Date: 2022-09-22 18:36:37
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-28 16:04:49
+ * @LastEditTime: 2022-09-28 18:18:27
  * @FilePath: \shopify-starter-theme-master\src\js\apps\test.vue
 -->
 
 <template>
     <div id="vue-test">
-        vue-组件-test--333-我改了-2222
+        vue-组件-test--333-我改了-5555
         <h1>count: {{count}}</h1>
         <div @click="add">add</div>
         <div @click="jian">-</div>

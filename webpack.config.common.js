@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-27 18:09:46
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-28 14:56:33
+ * @LastEditTime: 2022-09-28 18:20:39
  * @FilePath: \shopify-starter-theme-master\webpack.config.common.js
  * @description: 打包公共设置
  */
@@ -23,18 +23,32 @@ const {
     VueLoaderPlugin
 } = require('vue-loader/dist/index');
 const CopyPlugin = require('copy-webpack-plugin');
+const glob = require('glob');
+
 
 const config = read.sync('config.yml');
 const storeURL = config[shopifyStore].store;
 const themeID = config[shopifyStore].theme_id;
 
+glob.sync('./src/js/index/*.js').forEach(item => {
+    console.log(item)
+    const entry = item.replace(/^.*[\\\/]/, '').replace('.js', '');
+    console.log(entry)
+})
+
+// 遍历js打包入口，默认为js/index下所有js文件
+const initEntry = () => {
+    const entries = {}
+    glob.sync('./src/js/index/*.js').forEach(path => {
+        const entry = path.replace(/^.*[\\\/]/, '').replace('.js', '');
+        entries[entry] = path
+    })
+    return entries
+}
+
 module.exports = {
     mode: isProduction ? 'production' : 'development',
-    entry: {
-        theme: './src/js/theme.js',
-        product: './src/js/product.js',
-        customers: './src/js/customers.js',
-    },
+    entry: initEntry(),
     output: {
         filename: '[name].bundle.js',
         chunkFilename: '[chunkhash:5].bundle.js',
@@ -107,14 +121,11 @@ module.exports = {
             reportFilename: '../../report.html',
         }),
 
-        // Only remove the bundle files generated,
-        // other Shopify theme assets will end that should not be lost
         new CleanWebpackPlugin({
             // cleanOnceBeforeBuildPatterns: ['*.bundle.js'],
             cleanStaleWebpackAssets: false
         }),
 
-        // Extract CSS to external file to keep JS files smaller
         new MiniCssExtractPlugin({
             filename: '[name].bundle.css'
         }),

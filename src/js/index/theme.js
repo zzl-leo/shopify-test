@@ -1,21 +1,21 @@
 /*
  * @Date: 2022-09-15 18:51:29
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-28 15:27:24
- * @FilePath: \shopify-starter-theme-master\src\js\theme.js
+ * @LastEditTime: 2022-09-28 18:12:56
+ * @FilePath: \shopify-starter-theme-master\src\js\index\theme.js
  */
 /**
  * Scripts and styles used globally
  */
-import '../css/theme.css';
-import './utility/public-path';
-import './utility/newsletter-subscribe';
+import '../../css/theme.css';
+import '../utility/public-path';
+import '../utility/newsletter-subscribe';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import 'lazysizes';
-import openCart from './utility/open-cart';
+import openCart from '../utility/open-cart';
 
-import vueTest from './apps/vue-test';
-import {testComp} from './apps/vue-t2'
+import vueTest from '../apps/vue-test';
+import {testComp} from '../apps/vue-t2'
 
 // JS is enabled
 document.querySelector('html').classList.add('js');
