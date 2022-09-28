@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-15 18:51:29
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-26 09:29:15
+ * @LastEditTime: 2022-09-28 15:27:24
  * @FilePath: \shopify-starter-theme-master\src\js\theme.js
  */
 /**
@@ -36,7 +36,7 @@ if (cartLinks) {
   });
 }
 
-console.log("zzl666888")
+console.log("zzl66688877777777")
 console.log(vueTest)
 
 setTimeout(() => {
