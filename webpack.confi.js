@@ -1,4 +1,6 @@
 const isProduction = process.env.NODE_ENV === 'production';
+const shopifyStore = process.env.SHOPIFY_STORE
+
 const path = require('path');
 const read = require('read-yaml');
 const BrowserSync = require('browser-sync');
@@ -10,8 +12,8 @@ const {VueLoaderPlugin}  = require('vue-loader/dist/index');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const config = read.sync('config.yml');
-const storeURL = config.development.store;
-const themeID = config.development.theme_id;
+const storeURL = config[shopifyStore].store;
+const themeID = config[shopifyStore].theme_id;
 
 // const glob = require('glob')
 // const entryFiles = glob.sync(path.join('./src/js/**/*.js'))
@@ -123,10 +125,10 @@ module.exports = (env) => ({
     // Extract CSS to external file to keep JS files smaller
     new MiniCssExtractPlugin({ filename: '[name].bundle.css' }),
 
-    new BrowserSyncPlugin({
+    new BrowserSyncPlugin({ // 开发预览
       https: true,
       port: 3000,
-      proxy: `https://${storeURL}?preview_theme_id=${themeID}`,
+      proxy: `${storeURL}?preview_theme_id=${themeID}`,
       middleware: [
         (function mw(req, res, next) {
           // Add url paramaters for Shopify theme preview.

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-09-23 18:06:05
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-26 09:30:16
+ * @LastEditTime: 2022-09-27 17:41:14
  * @FilePath: \shopify-starter-theme-master\src\js\apps\vue\test.vue
 -->
 <!--
@@ -13,7 +13,7 @@
 
 <template>
     <div id="vue-test">
-        vue-组件-test
+        vue-组件-test--333
         <h1>count: {{count}}</h1>
         <div @click="add">add</div>
         <div @click="jian">-</div>
