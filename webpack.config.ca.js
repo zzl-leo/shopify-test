@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-09-27 18:24:25
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-28 15:57:20
+ * @LastEditTime: 2022-09-29 09:25:16
  * @FilePath: \shopify-starter-theme-master\webpack.config.ca.js
  * @description: CA配置
  */
@@ -23,7 +23,23 @@ module.exports = merge(common, {
         new CopyPlugin({
             patterns: [{
                     from: path.resolve(__dirname, 'src/liquid/ca/snippets/'),
-                    to: path.resolve(__dirname, 'theme/snippets/')
+                    to: path.resolve(__dirname, 'theme/snippets/'),
+                    noErrorOnMissing: true // 处理空文件夹报错
+                },
+                {
+                    from: path.resolve(__dirname, 'src/liquid/ca/sections/'),
+                    to: path.resolve(__dirname, 'theme/sections/'),
+                    noErrorOnMissing: true
+                },
+                {
+                    from: path.resolve(__dirname, 'src/liquid/ca/layout/'),
+                    to: path.resolve(__dirname, 'theme/layout/'),
+                    noErrorOnMissing: true
+                },
+                {
+                    from: path.resolve(__dirname, 'src/liquid/ca/assets/'),
+                    to: path.resolve(__dirname, 'theme/assets/'),
+                    noErrorOnMissing: true
                 }
             ]
         })

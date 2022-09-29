@@ -58,7 +58,6 @@
     "@shopify/theme-product": "^4.1.1",
     "@shopify/theme-product-form": "^4.1.1",
     "@tailwindcss/typography": "^0.4.1",
-    "archiver": "^5.3.1",
     "autoprefixer": "^10.2.5",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.10.0",

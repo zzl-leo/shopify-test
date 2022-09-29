@@ -1,40 +1,27 @@
 /*
  * @Date: 2022-09-27 18:09:46
  * @LastEditors: Leo
- * @LastEditTime: 2022-09-28 18:20:39
+ * @LastEditTime: 2022-09-29 10:21:30
  * @FilePath: \shopify-starter-theme-master\webpack.config.common.js
  * @description: 打包公共设置
  */
 const isProduction = process.env.NODE_ENV === 'production';
-const shopifyStore = process.env.SHOPIFY_STORE
+const shopifyStore = process.env.SHOPIFY_STORE;
 
 const path = require('path');
 const read = require('read-yaml');
 const BrowserSync = require('browser-sync');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {
-    BundleAnalyzerPlugin
-} = require('webpack-bundle-analyzer');
-const {
-    CleanWebpackPlugin
-} = require('clean-webpack-plugin');
-const {
-    VueLoaderPlugin
-} = require('vue-loader/dist/index');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader/dist/index');
 const CopyPlugin = require('copy-webpack-plugin');
 const glob = require('glob');
-
 
 const config = read.sync('config.yml');
 const storeURL = config[shopifyStore].store;
 const themeID = config[shopifyStore].theme_id;
-
-glob.sync('./src/js/index/*.js').forEach(item => {
-    console.log(item)
-    const entry = item.replace(/^.*[\\\/]/, '').replace('.js', '');
-    console.log(entry)
-})
 
 // 遍历js打包入口，默认为js/index下所有js文件
 const initEntry = () => {
@@ -100,12 +87,7 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: [{
-                    loader: 'vue-loader',
-                    // options: {
-                    //   compilerOptions: {
-                    //     preserveWhitespace: false
-                    //   }
-                    // }
+                    loader: 'vue-loader'
                 }]
             },
         ],
@@ -163,7 +145,30 @@ module.exports = {
                 },
             },
         }, {
-            reload: false,
+            reload: false
         }),
+        new CopyPlugin({ // 复制公共新增theme liquid
+            patterns: [{
+                    from: path.resolve(__dirname, 'src/liquid/common/snippets/'),
+                    to: path.resolve(__dirname, 'theme/snippets/'),
+                    noErrorOnMissing: true // 处理空文件夹报错
+                },
+                {
+                    from: path.resolve(__dirname, 'src/liquid/common/sections/'),
+                    to: path.resolve(__dirname, 'theme/sections/'),
+                    noErrorOnMissing: true
+                },
+                {
+                    from: path.resolve(__dirname, 'src/liquid/common/layout/'),
+                    to: path.resolve(__dirname, 'theme/layout/'),
+                    noErrorOnMissing: true
+                },
+                {
+                    from: path.resolve(__dirname, 'src/liquid/common/assets/'),
+                    to: path.resolve(__dirname, 'theme/assets/'),
+                    noErrorOnMissing: true
+                }
+            ]
+        })
     ],
 }
